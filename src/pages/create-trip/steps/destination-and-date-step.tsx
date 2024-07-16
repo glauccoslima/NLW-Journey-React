@@ -25,11 +25,11 @@ export function DestinationAndDateStep({
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   function openDatePicker() {
-    setIsDatePickerOpen(true); // Correção: remova o 'return' para evitar confusão, já que não é necessário
+    setIsDatePickerOpen(true);
   }
 
   function closeDatePicker() {
-    setIsDatePickerOpen(false); // Correção: mesma correção que acima
+    setIsDatePickerOpen(false);
   }
 
   const displayDate =
@@ -50,7 +50,7 @@ export function DestinationAndDateStep({
           disabled={isGuestsInputOpen}
           type="text"
           placeholder="Para onde você vai?"
-          className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" // Correção: mudar 'fex-1' para 'flex-1'
+          className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
           onChange={(event) => setDestination(event.target.value)}
         />
       </div>
@@ -66,7 +66,7 @@ export function DestinationAndDateStep({
         </span>
       </button>
 
-      {isDatePickerOpen && ( // Correção: só mostrar este div se isDatePickerOpen for true
+      {isDatePickerOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
           <div className="rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
             <div className="space-y-2">

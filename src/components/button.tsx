@@ -9,14 +9,13 @@ const buttonVariants = tv({
       secondary: "bg-zinc-800 text-zinc-200 hover:bg-zinc-700",
     },
     size: {
-      // Correção: 'size' deve estar dentro de 'variants'
       default: "py-2",
       full: "w-full h-11",
     },
   },
   defaultVariants: {
     variant: "primary",
-    size: "default", // Correção: Garantir que 'size' está sendo usado corretamente
+    size: "default",
   },
 });
 
