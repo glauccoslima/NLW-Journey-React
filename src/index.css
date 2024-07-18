@@ -1,11 +1,14 @@
+/* Importação das diretivas do Tailwind CSS para estilização base, componentes e utilitários */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Estilo global para garantir que todos os elementos não tenham um min-width padrão, prevenindo overflow indesejado */
 * {
   min-width: 0;
 }
 
+/* Configuração global de inputs para usar esquema de cores escuro, melhorando a legibilidade em temas escuros */
 input {
-  color-screen: dark;
+  color-scheme: dark;
 }

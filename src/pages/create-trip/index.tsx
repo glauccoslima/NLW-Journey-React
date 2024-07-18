@@ -7,25 +7,26 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
 import { DateRange } from "react-day-picker";
 import { api } from "../../lib/axios";
 
+// Componente principal para a página de criação de viagem, gerencia estado e fluxo de criação de uma viagem
 export function CreateTripPage() {
   const navigate = useNavigate();
 
+  // Estados para controlar os modais e coletar dados do formulário
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
   const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
   const [eventStartAndEndDates, setEventStartAndEndDates] = useState<
     DateRange | undefined
   >();
-
   const [emailsToInvite, setEmailsToInvite] = useState([
     "diego@rocketseat.com.br",
-    "Glauccolima@gmail.com",
+    "glauccolima@gmail.com",
   ]);
-
   const [destination, setDestination] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
 
+  // Funções de manipulação de estado para abrir e fechar modais de input
   function openGuestInput() {
     setIsGuestsInputOpen(true);
   }
@@ -50,6 +51,7 @@ export function CreateTripPage() {
     setIsConfirmTripModalOpen(false);
   }
 
+  // Adiciona um novo email à lista de convidados verificando duplicidades
   function addNewEmailToInvite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -60,12 +62,14 @@ export function CreateTripPage() {
     }
   }
 
+  // Remove um email da lista de convidados
   function removeEmailFromInvite(emailToRemove: string) {
     setEmailsToInvite(
       emailsToInvite.filter((email) => email !== emailToRemove)
     );
   }
 
+  // Função para submeter os dados da viagem, fazendo validação antes do envio
   async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (
@@ -96,6 +100,7 @@ export function CreateTripPage() {
     }
   }
 
+  // Renderização principal do componente
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">

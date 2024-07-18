@@ -5,6 +5,7 @@ import { DateRange, DayPicker } from "react-day-picker";
 import { format } from "date-fns";
 import "react-day-picker/dist/style.css";
 
+// Define as propriedades esperadas para o componente DestinationAndDateStep
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
   eventStartAndEndDates: DateRange | undefined;
@@ -14,6 +15,7 @@ interface DestinationAndDateStepProps {
   setEventStartAndEndDates: (dates: DateRange | undefined) => void;
 }
 
+// Componente para seleção de destino e datas de uma viagem
 export function DestinationAndDateStep({
   closeGuestInput,
   openGuestInput,
@@ -22,16 +24,20 @@ export function DestinationAndDateStep({
   setEventStartAndEndDates,
   eventStartAndEndDates,
 }: DestinationAndDateStepProps) {
+  // Estado local para controle da visibilidade do seletor de datas
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
+  // Função para abrir o DatePicker
   function openDatePicker() {
     setIsDatePickerOpen(true);
   }
 
+  // Função para fechar o DatePicker
   function closeDatePicker() {
     setIsDatePickerOpen(false);
   }
 
+  // Formata a exibição das datas selecionadas, se disponíveis
   const displayDate =
     eventStartAndEndDates &&
     eventStartAndEndDates.from &&
@@ -42,12 +48,13 @@ export function DestinationAndDateStep({
         )}`
       : null;
 
+  // Renderiza o componente de entrada para destino e o seletor de datas
   return (
     <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
       <div className="flex items-center gap-2 flex-1">
         <MapPin className="size-5 text-zinc-400" />
         <input
-          disabled={isGuestsInputOpen}
+          disabled={isGuestsInputOpen} // Desabilita a entrada se o modal de convidados estiver aberto
           type="text"
           placeholder="Para onde você vai?"
           className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
