@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { ConfirmTripModal } from "./confirm-trip-modal";
@@ -6,52 +6,45 @@ import { DestinationAndDateStep } from "./steps/destination-and-date-step";
 import { InviteGuestsStep } from "./steps/invite-guests-step";
 import { DateRange } from "react-day-picker";
 import { api } from "../../lib/axios";
+import axios from "axios";
+import { formatISO, startOfDay, endOfDay, addDays } from "date-fns";
 
-// Componente principal para a página de criação de viagem, gerencia estado e fluxo de criação de uma viagem
 export function CreateTripPage() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook para navegação de rotas
 
-  // Estados para controlar os modais e coletar dados do formulário
+  // Estados para gerenciar a visibilidade de modais e dados de formulário
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
   const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
   const [eventStartAndEndDates, setEventStartAndEndDates] = useState<
     DateRange | undefined
   >();
-  const [emailsToInvite, setEmailsToInvite] = useState([
-    "diego@rocketseat.com.br",
-    "glauccolima@gmail.com",
-  ]);
+  const [emailsToInvite, setEmailsToInvite] = useState<string[]>([]);
   const [destination, setDestination] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
 
-  // Funções de manipulação de estado para abrir e fechar modais de input
+  // Funções para manipular o estado dos inputs e modais
   function openGuestInput() {
     setIsGuestsInputOpen(true);
   }
-
   function closeGuestInput() {
     setIsGuestsInputOpen(false);
   }
-
   function openGuestsModal() {
     setIsGuestsModalOpen(true);
   }
-
   function closeGuestsModal() {
     setIsGuestsModalOpen(false);
   }
-
   function openConfirmTripModal() {
     setIsConfirmTripModalOpen(true);
   }
-
   function closeConfirmTripModal() {
     setIsConfirmTripModalOpen(false);
   }
 
-  // Adiciona um novo email à lista de convidados verificando duplicidades
+  // Adiciona um novo email à lista de convidados
   function addNewEmailToInvite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -69,38 +62,63 @@ export function CreateTripPage() {
     );
   }
 
-  // Função para submeter os dados da viagem, fazendo validação antes do envio
+  // Processa a criação de uma viagem
   async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (
-      !destination ||
-      !eventStartAndEndDates?.from ||
-      !eventStartAndEndDates?.to ||
-      emailsToInvite.length === 0 ||
-      !ownerName ||
-      !ownerEmail
-    ) {
-      console.error("All fields must be filled.");
+    if (!destination.trim() || !ownerName.trim() || !ownerEmail.trim()) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
+
+    // Assegura que a data de início da viagem seja no mínimo o dia seguinte
+    const today = startOfDay(new Date());
+    const minimumStartDate = addDays(today, 1);
+    const fromDate = eventStartAndEndDates?.from
+      ? startOfDay(eventStartAndEndDates.from)
+      : null;
+    const toDate = eventStartAndEndDates?.to
+      ? endOfDay(eventStartAndEndDates.to)
+      : null;
+    if (!fromDate || !toDate || fromDate < minimumStartDate) {
+      alert(
+        "Por favor, selecione uma data de início do dia seguinte ou posterior."
+      );
+      return;
+    }
+
+    // Formata as datas para envio ao servidor
+    const formattedStart = formatISO(fromDate, { representation: "complete" });
+    const formattedEnd = formatISO(toDate, { representation: "complete" });
 
     try {
       const response = await api.post("/trips", {
         destination,
-        starts_at: eventStartAndEndDates.from,
-        ends_at: eventStartAndEndDates.to,
-        emails: emailsToInvite,
-        owner: ownerName,
-        email: ownerEmail,
+        starts_at: formattedStart,
+        ends_at: formattedEnd,
+        emails_to_invite: emailsToInvite,
+        owner_name: ownerName,
+        owner_email: ownerEmail,
       });
-      const { tripId } = response.data;
-      navigate(`/trips/${tripId}`);
+      console.log("Viagem criada com sucesso:", response.data);
+      navigate(`/trips/${response.data.tripId}`);
     } catch (error) {
-      console.error("Failed to create trip:", error);
+      if (axios.isAxiosError(error)) {
+        console.error("Erro ao criar viagem:", error.message);
+        alert(
+          `Erro ao criar viagem: ${
+            error.response?.data.message || "Servidor banco de dados desligado"
+          }`
+        );
+      } else if (error instanceof Error) {
+        console.error("Erro ao criar viagem:", error.message);
+        alert(`Erro ao criar viagem: ${error.message}`);
+      } else {
+        console.error("Erro ao criar viagem:", error);
+        alert("Um erro não esperado ocorreu.");
+      }
     }
   }
 
-  // Renderização principal do componente
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
@@ -110,7 +128,6 @@ export function CreateTripPage() {
             Convide seus amigos e planeje sua próxima viagem!
           </p>
         </div>
-
         <DestinationAndDateStep
           closeGuestInput={closeGuestInput}
           isGuestsInputOpen={isGuestsInputOpen}
@@ -119,7 +136,6 @@ export function CreateTripPage() {
           eventStartAndEndDates={eventStartAndEndDates}
           setEventStartAndEndDates={setEventStartAndEndDates}
         />
-
         {isGuestsInputOpen && (
           <InviteGuestsStep
             emailsToInvite={emailsToInvite}
@@ -127,20 +143,18 @@ export function CreateTripPage() {
             openGuestsModal={openGuestsModal}
           />
         )}
-
         <p className="text-sm text-zinc-500">
           Ao planejar sua viagem pela plann.er você automaticamente concorda com
           nossos{" "}
           <a className="text-zinc-300 underline" href="#">
             termos de uso
           </a>{" "}
-          e
+          e{" "}
           <a className="text-zinc-300 underline" href="#">
             política de privacidade.
           </a>
         </p>
       </div>
-
       {isGuestsModalOpen && (
         <InviteGuestsModal
           emailsToInvite={emailsToInvite}
@@ -149,7 +163,6 @@ export function CreateTripPage() {
           removeEmailFromInvite={removeEmailFromInvite}
         />
       )}
-
       {isConfirmTripModalOpen && (
         <ConfirmTripModal
           closeConfirmTripModal={closeConfirmTripModal}

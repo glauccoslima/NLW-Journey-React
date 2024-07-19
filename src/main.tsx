@@ -9,6 +9,6 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     {/* Utiliza React.StrictMode para destacar potenciais problemas no aplicativo */}
-    <App /> // Injeção do componente 'App' como raiz do aplicativo React
+    <App /> {/*Injeção do componente 'App' como raiz do aplicativo React*/}
   </React.StrictMode>
 );
