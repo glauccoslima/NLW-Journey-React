@@ -6,9 +6,9 @@ Este projeto é um sistema interativo chamado plann.er, onde os usuários podem 
 
 ## Índice
 
-- [Sobre o Projeto](#sobre-o-projeto-📖)
-- [Funcionalidades](#funcionalidades-✨)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas-💻)
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Como Executar o Projeto](#como-executar-o-projeto)
 - [Componentes Principais](#componentes-principais)
 - [Estrutura do Projeto](#estrutura-do-projeto)
