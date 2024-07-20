@@ -13,18 +13,18 @@ Este projeto é um sistema interativo chamado plann.er, onde os usuários podem 
 - [Componentes Principais](#componentes-principais)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 
-## Sobre o Projeto 📖
+## Sobre o Projeto
 
 O objetivo deste projeto é criar uma aplicação web onde os usuários podem planejar eventos, selecionando destinos, datas e convidados de forma intuitiva e dinâmica. A aplicação interage com uma API para buscar informações e atualizar o planejamento em tempo real.
 
-## Funcionalidades ✨
+## Funcionalidades
 
 - **Seleção de Destino**: Os usuários podem digitar e selecionar um destino para o evento.
 - **Seleção de Datas**: É possível escolher as datas de início e fim do evento através de um seletor de datas.
 - **Adição de Convidados**: Os usuários podem adicionar convidados ao evento, gerenciando a lista de participantes.
 - **Integração com API**: A aplicação faz chamadas a uma API para buscar informações adicionais e atualizar o planejamento do evento.
 
-## Tecnologias Utilizadas 💻
+## Tecnologias Utilizadas
 
 | ![HTML5](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/html5-original-wordmark%20(1).png) | ![CSS3](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/css3-original-wordmark.png) | ![JavaScript](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/javascript.png) | ![API](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/api-3.png) | ![React](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/react.png) | ![TypeScript](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/typescript.png) | ![Vite](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/vite.png) | ![Tailwind CSS](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/tailwindcss.png) | ![Axios](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/axios.png) |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
