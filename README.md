@@ -60,6 +60,23 @@ O objetivo deste projeto é criar uma aplicação web onde os usuários podem pl
 - Página principal para a criação de uma nova viagem.
 - Gerencia a seleção de destino, datas e convidados.
 
+### Dependências
+
+As dependências principais do projeto são:
+
+- **Axios**: Para realizar requisições HTTP.
+- **Date-FNS**: Para manipulação de datas.
+- **LocalForage**: Para armazenamento local.
+- **Lucide-React**: Para ícones.
+- **Match-Sorter**: Para classificação e filtragem de dados.
+- **React**: Biblioteca principal para construção da interface.
+- **React-Day-Picker**: Para seleção de datas.
+- **React-DOM**: Para renderização de componentes React no DOM.
+- **React-Router-DOM**: Para navegação entre páginas.
+- **Sort-By**: Para ordenação de listas.
+- **Tailwind-CSS**: Para estilos e design.
+- **Tailwind-Variants**: Para componentes estilizados com Tailwind.
+
 ## Estrutura do Projeto
 
 - `src/components`: Contém os componentes reutilizáveis da aplicação.
@@ -108,3 +125,4 @@ O objetivo deste projeto é criar uma aplicação web onde os usuários podem pl
                 |-- guests.tsx
                 |-- important-links.tsx
                 |-- index.tsx
+
