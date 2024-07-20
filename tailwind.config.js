@@ -17,7 +17,7 @@ export default {
       },
       // Permite a adição de imagens de fundo customizadas usando a chave 'backgroundImage'
       backgroundImage: {
-        pattern: "url(/public/bg.png)", // Assegure-se de que o caminho está correto
+        pattern: "url(/bg.png)", // Assegure-se de que o caminho está correto
       },
     },
   },
