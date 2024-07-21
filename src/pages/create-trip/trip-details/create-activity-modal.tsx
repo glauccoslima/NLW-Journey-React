@@ -1,6 +1,6 @@
 import { Calendar, Tag, X } from "lucide-react";
 import { Button } from "../../../components/button";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../../lib/axios";
 import { formatISO, isAfter } from "date-fns"; // Utilizado para manipular datas
@@ -16,7 +16,6 @@ export function CreateActivityModal({
   closeCreateActivityModal,
 }: CreateActivityModalProps) {
   const { tripId } = useParams<string>();
-  const [occursAt, setOccursAt] = useState<string>("");
 
   // Função para criar uma nova atividade via POST request
   async function createActivity(event: FormEvent<HTMLFormElement>) {
@@ -24,7 +23,7 @@ export function CreateActivityModal({
     const data = new FormData(event.currentTarget);
 
     const title = data.get("title")?.toString() ?? "";
-    let occurs_at = data.get("occurs_at")?.toString() || occursAt;
+    let occurs_at = data.get("occurs_at")?.toString();
 
     // Validação da data da atividade para garantir que seja futura
     if (!occurs_at || !isAfter(new Date(occurs_at), new Date())) {
@@ -56,6 +55,7 @@ export function CreateActivityModal({
     }
   }
 
+  // Estrutura do componente modal
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center px-4">
       <div className="w-full max-w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5 mx-auto">
@@ -63,7 +63,8 @@ export function CreateActivityModal({
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Cadastrar atividade</h2>
             <button type="button" onClick={closeCreateActivityModal}>
-              <X className="size-5 text-zinc-400" />
+              <X className="size-5 text-zinc-400" />{" "}
+              {/* Botão de fechar o modal */}
             </button>
           </div>
           <form onSubmit={createActivity} className="space-y-3">
@@ -82,17 +83,7 @@ export function CreateActivityModal({
                   type="datetime-local"
                   name="occurs_at"
                   placeholder="Data e horário da atividade"
-                  className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
-                  onChange={(e) => setOccursAt(e.target.value)}
-                />
-                {/* Campo alternativo para dispositivos que não suportam datetime-local */}
-                <input
-                  type="text"
-                  name="occurs_at_alt"
-                  placeholder="AAAA-MM-DDTHH:MM"
-                  className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
-                  onChange={(e) => setOccursAt(e.target.value)}
-                  style={{ display: "none" }}
+                  className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1 [color-scheme:dark]"
                 />
               </div>
             </div>
