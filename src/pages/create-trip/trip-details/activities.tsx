@@ -2,7 +2,7 @@ import { CircleCheck } from "lucide-react";
 import { api } from "../../../lib/axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 // Estrutura de dados para as atividades de cada dia
@@ -42,10 +42,10 @@ export function Activities() {
           <div className="flex gap-2 items-baseline">
             {/* Exibe a data e o dia da semana */}
             <span className="text-xl text-zinc-300 font-semibold">
-              Dia {format(new Date(category.date), "d", { locale: ptBR })}
+              Dia {format(parseISO(category.date), "d", { locale: ptBR })}
             </span>
             <span className="text-xs text-zinc-500">
-              {format(new Date(category.date), "EEEE", { locale: ptBR })}
+              {format(parseISO(category.date), "EEEE", { locale: ptBR })}
             </span>
           </div>
           {/* Condicional para verificar se existem atividades planejadas */}
@@ -59,7 +59,7 @@ export function Activities() {
                     <CircleCheck className="size-5 text-lime-300" />
                     <span className="text-zinc-100">{activity.title}</span>
                     <span className="text-zinc-400 text-sm ml-auto">
-                      {format(new Date(activity.occurs_at), "HH:mm")}h
+                      {format(parseISO(activity.occurs_at), "HH:mm")}h
                     </span>
                   </div>
                 </div>
