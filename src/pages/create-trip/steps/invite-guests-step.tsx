@@ -15,12 +15,12 @@ export function InviteGuestsStep({
   openGuestsModal,
 }: InviteGuestsStepProps) {
   return (
-    <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
+    <div className="h-auto bg-zinc-900 px-4 py-4 sm:py-0 rounded-xl flex flex-col sm:flex-row items-center shadow-shape gap-3">
       {/* Botão para abrir o modal de convidados e exibir a quantidade de pessoas convidadas */}
       <button
         type="button"
         onClick={openGuestsModal}
-        className="flex items-center gap-2 flex-1 text-left"
+        className="flex items-center gap-2 flex-1 text-left w-full sm:w-auto"
       >
         <UserRoundPlus className="size-5 text-zinc-400" />
         {emailsToInvite.length > 0 ? (
@@ -35,10 +35,14 @@ export function InviteGuestsStep({
           </span>
         )}
       </button>
-      <div className="w-px h-6 bg-zinc-800"></div>
+      <div className="w-full h-px bg-zinc-800 my-2 sm:my-0 sm:w-px sm:h-6"></div>
 
       {/* Botão para confirmar a viagem e proceder ao próximo passo */}
-      <Button onClick={openConfirmTripModal} variant="primary">
+      <Button
+        onClick={openConfirmTripModal}
+        variant="primary"
+        className="w-full sm:w-auto"
+      >
         Confirmar viagem
         <ArrowRight className="size-5" />
       </Button>

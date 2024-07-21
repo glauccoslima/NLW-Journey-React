@@ -39,7 +39,7 @@ export function Activities() {
     <div className="space-y-8">
       {activities.map((category) => (
         <div key={category.date} className="space-y-2.5">
-          <div className="flex gap-2 items-baseline">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline">
             {/* Exibe a data e o dia da semana */}
             <span className="text-xl text-zinc-300 font-semibold">
               Dia {format(parseISO(category.date), "d", { locale: ptBR })}
