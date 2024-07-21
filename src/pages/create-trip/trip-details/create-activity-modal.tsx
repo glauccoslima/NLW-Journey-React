@@ -33,8 +33,7 @@ export function CreateActivityModal({
 
     // Ajusta a data para UTC para evitar problemas de fuso horário
     const date = new Date(occurs_at);
-    const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-    occurs_at = formatISO(utcDate);
+    occurs_at = formatISO(date);
 
     try {
       const response = await api.post(`/trips/${tripId}/activities`, {

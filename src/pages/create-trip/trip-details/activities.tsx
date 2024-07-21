@@ -26,7 +26,11 @@ export function Activities() {
       .get(`/trips/${tripId}/activities`)
       .then((response) => {
         // Atualiza o state com as atividades recebidas da API
-        setActivities(response.data.activities);
+        const sortedActivities = response.data.activities.sort(
+          (a: Activity, b: Activity) =>
+            new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
+        setActivities(sortedActivities);
       })
       .catch((error) => console.error("Erro ao carregar atividades", error)); // Captura e loga erros
   }, [tripId]);
