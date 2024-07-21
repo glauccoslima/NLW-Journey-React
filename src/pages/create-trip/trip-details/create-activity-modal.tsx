@@ -36,7 +36,7 @@ export function CreateActivityModal({
     const utcDate = new Date(
       localDate.getTime() - localDate.getTimezoneOffset() * 60000
     );
-    occurs_at = formatISO(utcDate);
+    occurs_at = formatISO(utcDate, { representation: "complete" });
 
     try {
       const response = await api.post(`/trips/${tripId}/activities`, {
