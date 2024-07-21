@@ -3,7 +3,7 @@ import { Button } from "../../../components/button";
 import { FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../../lib/axios";
-import { formatISO, parseISO, isAfter } from "date-fns"; // Utilizado para manipular datas
+import { formatISO, isAfter } from "date-fns"; // Utilizado para manipular datas
 import axios from "axios";
 
 // Props do componente para controlar a visibilidade do modal
@@ -32,8 +32,11 @@ export function CreateActivityModal({
     }
 
     // Ajusta a data para UTC para evitar problemas de fuso horário
-    const date = parseISO(occurs_at);
-    occurs_at = formatISO(date);
+    const localDate = new Date(occurs_at);
+    const utcDate = new Date(
+      localDate.getTime() - localDate.getTimezoneOffset() * 60000
+    );
+    occurs_at = formatISO(utcDate);
 
     try {
       const response = await api.post(`/trips/${tripId}/activities`, {
