@@ -33,9 +33,7 @@ export function CreateActivityModal({
 
     // Ajusta a data para UTC para evitar problemas de fuso horário
     const localDate = new Date(occurs_at);
-    const utcDate = new Date(
-      localDate.getTime() - localDate.getTimezoneOffset() * 60000
-    );
+    const utcDate = new Date(localDate.toISOString()); // Preserva o horário local e converte para UTC
     occurs_at = formatISO(utcDate, { representation: "complete" });
 
     try {
