@@ -3,7 +3,7 @@ import { Button } from "../../../components/button";
 import { FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../../lib/axios";
-import { formatISO } from "date-fns"; // Utilizado para manipular datas em formato ISO
+import { formatISO, parseISO, isAfter } from "date-fns"; // Utilizado para manipular datas
 import axios from "axios";
 
 // Props do componente para controlar a visibilidade do modal
@@ -26,13 +26,13 @@ export function CreateActivityModal({
     let occurs_at = data.get("occurs_at")?.toString();
 
     // Validação da data da atividade para garantir que seja futura
-    if (!occurs_at || new Date(occurs_at) < new Date()) {
+    if (!occurs_at || !isAfter(new Date(occurs_at), new Date())) {
       alert("Por favor, forneça uma data futura válida para a atividade.");
       return;
     }
 
     // Ajusta a data para UTC para evitar problemas de fuso horário
-    const date = new Date(occurs_at);
+    const date = parseISO(occurs_at);
     occurs_at = formatISO(date);
 
     try {
