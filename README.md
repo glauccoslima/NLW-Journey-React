@@ -26,8 +26,21 @@ O objetivo deste projeto é criar uma aplicação web onde os usuários podem pl
 
 ## Tecnologias Utilizadas
 
-| ![HTML5](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/html5-original-wordmark%20(1).png) | ![CSS3](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/css3-original-wordmark.png) | ![JavaScript](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/javascript.png) | ![API](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/api-3.png) | ![React](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/react.png) | ![TypeScript](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/typescript.png) | ![Vite](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/vite.png) | ![Tailwind CSS](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/tailwindcss.png) | ![Axios](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/axios.png) |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ![HTML5](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/html5-original-wordmark%20(1).png) | ![CSS3](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/css3-original-wordmark.png) | ![JavaScript](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/javascript.png) |
+|:---:|:---:|:---:|
+| HTML5 | CSS3 | JavaScript |
+
+| ![API](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/api-3.png) | ![React](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/react.png) | ![TypeScript](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/typescript.png) |
+|:---:|:---:|:---:|
+| API | React | TypeScript |
+
+| ![Vite](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/vite.png) | ![Tailwind CSS](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/tailwindcss.png) | ![Axios](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/axios.png) |
+|:---:|:---:|:---:|
+| Vite | Tailwind CSS | Axios |
+
+| ![Node](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/node.png) | ![PostgreSQL](https://raw.githubusercontent.com/glauccoslima/servidor_estaticos/main/postgresql.png) |
+|:---:|:---:|
+| Node | PostgreSQL |
 
 ## Como Executar o Projeto
 
